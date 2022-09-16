@@ -4,7 +4,7 @@ import { CiudadService } from '../../providers/ciudad.service';
 import { plainToInstance } from 'class-transformer';
 import { CiudadEntity } from '../../entities/ciudad.entity';
 import { BusinessErrorsInterceptor } from '../../../shared/interceptors/business-errors.interceptor';
-import { CiudadDto } from 'src/ciudad/dtos/ciudad.dto';
+import { CiudadDto } from '../../dtos/ciudad.dto';
 // import { CiudadDto } from 'src/ciudad/dtos/ciudad.dto';
 
 

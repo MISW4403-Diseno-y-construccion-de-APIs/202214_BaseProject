@@ -1,4 +1,4 @@
-import { CiudadEntity } from "src/ciudad/entities/ciudad.entity";
+import { CiudadEntity } from "../../ciudad/entities/ciudad.entity";
 import { Column, PrimaryGeneratedColumn, ManyToOne , Entity} from "typeorm";
 
 @Entity()

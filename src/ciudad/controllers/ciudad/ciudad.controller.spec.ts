@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CiudadService } from '../../providers/ciudad.service';
-// import { TypeOrmTestingConfig } from '../../config/typeorm-testing-config';
+import { TypeOrmTestingConfig } from '../../../shared/testing-utils/typeorm-testing-config';
 import { CiudadController } from './ciudad.controller';
 
 describe('CiudadController', () => {
@@ -8,7 +8,7 @@ describe('CiudadController', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      // imports: [...TypeOrmTestingConfig()],
+      imports: [...TypeOrmTestingConfig()],
       providers: [CiudadService],
       controllers: [CiudadController],
     }).compile();
