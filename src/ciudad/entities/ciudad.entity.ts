@@ -1,4 +1,4 @@
-import { SupermercadoEntity } from "src/supermercado/entities/supermercado.entity";
+import { SupermercadoEntity } from "../../supermercado/entities/supermercado.entity";
 import { Column, PrimaryGeneratedColumn, OneToMany, Entity } from "typeorm";
 
 @Entity()
