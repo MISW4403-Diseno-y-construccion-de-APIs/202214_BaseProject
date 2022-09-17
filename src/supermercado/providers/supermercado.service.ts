@@ -15,15 +15,18 @@ export class SupermercadoService {
     public mensajeError = "No se encontró el supermercado con la identificación proporcionada.";
 
     async create(supermercado: SupermercadoEntity): Promise<SupermercadoEntity> {
+        this.validarTamanoNombre(supermercado.nombre);
         return await this.supermercadoRepository.save(supermercado);
     }
 
     async update(id: string, supermercado: SupermercadoEntity): Promise<SupermercadoEntity> {
-        const persiteSupermercado: SupermercadoEntity = await this.supermercadoRepository.findOne({where:{id}});
-        if (!persiteSupermercado)
-          throw new BusinessLogicException(this.mensajeError, BusinessError.NOT_FOUND);
+            this.validarTamanoNombre(supermercado.nombre);
+            const persiteSupermercado: SupermercadoEntity = await this.supermercadoRepository.findOne({where:{id:id}});
+            if (!persiteSupermercado){
+                throw new BusinessLogicException(this.mensajeError, BusinessError.NOT_FOUND);
+            }
         
-        return await this.supermercadoRepository.save({...persiteSupermercado, ...supermercado});
+            return await this.supermercadoRepository.save({...persiteSupermercado, ...supermercado});
     }
 
     async delete(id: string) {
@@ -44,5 +47,11 @@ export class SupermercadoService {
 
     async findAll(): Promise<SupermercadoEntity[]> {
         return await this.supermercadoRepository.find();
+    }
+
+    private validarTamanoNombre(nombre: string): void {
+        if(nombre.length < 10){
+            throw new BusinessLogicException("El tamaño del nombre debe ser mayor a 10 caracteres.", BusinessError.NOT_FOUND);
+        }
     }
 }
