@@ -32,7 +32,7 @@ export class CiudadService {
             throw new BusinessLogicException(this.mensajeId, BusinessError.NOT_FOUND);
         }
 
-        const persiteCiudad: CiudadEntity = await this.ciudadRepository.findOne({where:{id}});
+        const persiteCiudad: CiudadEntity = await this.ciudadRepository.findOne({where:{id}, relations:["supermercados"]});
         if (!persiteCiudad)
           throw new BusinessLogicException(this.mensajeError, BusinessError.NOT_FOUND);
         
@@ -47,7 +47,7 @@ export class CiudadService {
     }
 
     async findOne(id: string): Promise<CiudadEntity> {
-        const ciudad: CiudadEntity =  await this.ciudadRepository.findOne({where:{id} });
+        const ciudad: CiudadEntity =  await this.ciudadRepository.findOne({where:{id}, relations:["supermercados"]});
         if(!ciudad)
             throw new BusinessLogicException(this.mensajeError, BusinessError.NOT_FOUND);
 
