@@ -1,6 +1,6 @@
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AerolineaEntity } from '../../aerolinea/aerolinea.entity';
-import { AeropuertoEntity } from '../../aeropuerto/aeropuerto.entity';
+import { AirlineEntity } from '../../airline/airline.entity';
+import { AirportEntity } from '../../airport/airport.entity';
 
 
 export const TypeOrmTestingConfig = () => [
@@ -9,14 +9,14 @@ export const TypeOrmTestingConfig = () => [
     database: ':memory:',
     dropSchema: true,
     entities: [
-      AeropuertoEntity,
-      AerolineaEntity
+      AirportEntity,
+      AirlineEntity
     ],
     synchronize: true,
     keepConnectionAlive: true,
   }),
   TypeOrmModule.forFeature([
-    AeropuertoEntity,
-    AerolineaEntity
+    AirportEntity,
+    AirlineEntity
   ]),
 ];
