@@ -40,8 +40,11 @@ export class CiudadService {
     }
 
     async delete(id: string) {
-        const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where:{id}});
-        this.validarPais(ciudad);
+        
+        const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where:{id}, relations:["supermercados"]});
+        if (!ciudad)
+          throw new BusinessLogicException(this.mensajeError, BusinessError.NOT_FOUND);
+        
 
         await this.ciudadRepository.remove(ciudad);
     }
@@ -55,7 +58,7 @@ export class CiudadService {
     }
 
     async findAll(): Promise<CiudadEntity[]> {
-        return await this.ciudadRepository.find();
+        return await this.ciudadRepository.find({relations:["supermercados"]});
     }
 
     private validarPais(ciudad: CiudadEntity) {
