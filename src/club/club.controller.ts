@@ -10,7 +10,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
-import { BusinessErrorsInterceptor } from '../shared/interceptors/business-errors.interceptor';
+import { BusinessErrorsInterceptor } from '../utils/interceptors/business-errors.interceptor';
 import { Club } from './club';
 import { ClubEntity } from './club.entity';
 import { ClubService } from './club.service';

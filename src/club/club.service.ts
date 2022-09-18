@@ -1,9 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {
-  BusinessError,
-  BusinessLogicException,
-} from '../shared/errors/business-errors';
+import { HttpError, LogicException } from '../utils/errors/business-errors';
 import { Repository } from 'typeorm';
 import { ClubEntity } from './club.entity';
 
@@ -26,19 +23,16 @@ export class ClubService {
       relations: ['socios'],
     });
     if (!pais)
-      throw new BusinessLogicException(
-        'Sin coincidencias',
-        BusinessError.NOT_FOUND,
-      );
+      throw new LogicException('Sin coincidencias', HttpError.NOT_FOUND);
 
     return pais;
   }
 
   async create(club: ClubEntity): Promise<ClubEntity> {
     if (club.descripcion.trim().length > 100)
-      throw new BusinessLogicException(
+      throw new LogicException(
         'descripcion mayor a 100 caracteres',
-        BusinessError.BAD_REQUEST,
+        HttpError.BAD_REQUEST,
       );
     return await this.clubRepository.save(club);
   }
@@ -48,14 +42,11 @@ export class ClubService {
       where: { id },
     });
     if (!persistedsocio)
-      throw new BusinessLogicException(
-        'Sin coincidencias',
-        BusinessError.NOT_FOUND,
-      );
+      throw new LogicException('Sin coincidencias', HttpError.NOT_FOUND);
     if (club.descripcion.trim().length > 100)
-      throw new BusinessLogicException(
+      throw new LogicException(
         'descripcion mayor a 100 caracteres',
-        BusinessError.BAD_REQUEST,
+        HttpError.BAD_REQUEST,
       );
 
     club.id = id;
@@ -70,10 +61,7 @@ export class ClubService {
       }),
     ]);
     if (!club)
-      throw new BusinessLogicException(
-        'Sin coincidencias',
-        BusinessError.NOT_FOUND,
-      );
+      throw new LogicException('Sin coincidencias', HttpError.NOT_FOUND);
 
     await this.clubRepository.remove(club);
   }
