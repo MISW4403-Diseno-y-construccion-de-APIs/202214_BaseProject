@@ -8,7 +8,7 @@ import { CiudadDto } from '../../dtos/ciudad.dto';
 // import { CiudadDto } from 'src/ciudad/dtos/ciudad.dto';
 
 
-@Controller('ciudades')
+@Controller('cities')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class CiudadController {
     constructor(
