@@ -1,5 +1,5 @@
 import { TiendaEntity } from '../tienda/tienda.entity';
-import { Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn, Column, Double } from 'typeorm';
+import { Entity, ManyToMany, PrimaryGeneratedColumn, Column, Double } from 'typeorm';
 
 @Entity()
 export class ProductoEntity {
@@ -10,7 +10,7 @@ export class ProductoEntity {
     name: string;
   
   @Column()
-    price: Double;
+    price: String;
 
   @Column()
     type: string;
