@@ -30,7 +30,7 @@ describe('SupermercadoService', () => {
     for(let i = 0; i < 5; i++){
         const supermercado: SupermercadoEntity = await repository.save({
           id: faker.datatype.uuid(),
-          nombre: faker.name.firstName(),
+          nombre: faker.company.name(),
           longitud: faker.address.latitude(),
           latitud: faker.address.latitude(),
           pagina: faker.internet.url(),
