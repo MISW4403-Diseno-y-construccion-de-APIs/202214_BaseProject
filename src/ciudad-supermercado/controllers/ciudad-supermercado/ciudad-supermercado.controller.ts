@@ -1,6 +1,9 @@
-import { Controller, Get, Param, Post, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
+import { SupermercadoDto } from '../../../supermercado/dtos/supermercado.dto';
 import { CiudadSupermercadoService } from '../../../ciudad-supermercado/providers/ciudad-supermercado/ciudad-supermercado.service';
 import { BusinessErrorsInterceptor } from '../../../shared/interceptors/business-errors.interceptor';
+import { SupermercadoEntity } from 'src/supermercado/entities/supermercado.entity';
+import { plainToInstance } from 'class-transformer';
 @Controller('cities')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class CiudadSupermercadoController {
@@ -22,6 +25,15 @@ export class CiudadSupermercadoController {
         return this.ciudadSupermercadoService.findSupermarketFromCity(supermercadoId, ciudadId);
     }
 
-    updateSupermarketsFromCity(){}
-    deleteSupermarketFromCity(){}
+    @Put(':ciudadId/supermarkets/:supermercadoId')
+    updateSupermarketsFromCity(@Param('ciudadId') ciudadId: string, @Param('supermercadoId') supermercadoId: string, @Body() supermercadoDto: SupermercadoDto){
+        const supermercado: SupermercadoEntity = plainToInstance(SupermercadoEntity, supermercadoDto);
+        return this.ciudadSupermercadoService.updateSupermarketsFromCity(supermercadoId, ciudadId, supermercado)
+    }
+
+    @Delete(':ciudadId/supermarkets/:supermercadoId')
+    @HttpCode(204)
+    deleteSupermarketFromCity(@Param('ciudadId') ciudadId: string, @Param('supermercadoId') supermercadoId: string){
+        return this.ciudadSupermercadoService.deleteSupermarketFromCity(supermercadoId, ciudadId);
+    }
 }

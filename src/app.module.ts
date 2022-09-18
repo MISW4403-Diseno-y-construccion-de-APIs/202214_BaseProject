@@ -21,7 +21,7 @@ import { CiudadSupermercadoModule } from './ciudad-supermercado/ciudad-supermerc
        CiudadEntity,
        SupermercadoEntity
       ],
-      dropSchema: true,
+      dropSchema: false,
       synchronize: true,
       keepConnectionAlive: true
     }),
