@@ -18,9 +18,6 @@ export class SupermercadoEntity {
     @Column()
     pagina: string;
 
-    @Column()
-    cantidadSedes: number;
-
     @ManyToMany(() => CiudadEntity, ciudad => ciudad.supermercados)
     @JoinTable()
     ciudades: CiudadEntity[];

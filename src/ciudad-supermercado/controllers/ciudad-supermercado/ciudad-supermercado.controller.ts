@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseIntercept
 import { SupermercadoDto } from '../../../supermercado/dtos/supermercado.dto';
 import { CiudadSupermercadoService } from '../../../ciudad-supermercado/providers/ciudad-supermercado/ciudad-supermercado.service';
 import { BusinessErrorsInterceptor } from '../../../shared/interceptors/business-errors.interceptor';
-import { SupermercadoEntity } from 'src/supermercado/entities/supermercado.entity';
+import { SupermercadoEntity } from '../../../supermercado/entities/supermercado.entity';
 import { plainToInstance } from 'class-transformer';
 @Controller('cities')
 @UseInterceptors(BusinessErrorsInterceptor)

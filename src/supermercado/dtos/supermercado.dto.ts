@@ -18,9 +18,4 @@ export class SupermercadoDto {
     @IsNotEmpty()
     readonly pagina: string;
 
-    @IsNumber()
-    @IsNotEmpty()
-    readonly cantidadSedes: number;
-
-
 }

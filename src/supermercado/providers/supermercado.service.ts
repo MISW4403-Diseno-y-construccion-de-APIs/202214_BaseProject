@@ -21,7 +21,7 @@ export class SupermercadoService {
 
     async update(id: string, supermercado: SupermercadoEntity): Promise<SupermercadoEntity> {
             this.validarTamanoNombre(supermercado.nombre);
-            const persiteSupermercado: SupermercadoEntity = await this.supermercadoRepository.findOne({where:{id:id}});
+            const persiteSupermercado: SupermercadoEntity = await this.supermercadoRepository.findOne({where:{id:id}, relations:["ciudades"] });
             if (!persiteSupermercado){
                 throw new BusinessLogicException(this.mensajeError, BusinessError.NOT_FOUND);
             }
@@ -38,7 +38,7 @@ export class SupermercadoService {
     }
 
     async findOne(id: string): Promise<SupermercadoEntity> {
-        const supermercado: SupermercadoEntity =  await this.supermercadoRepository.findOne({where:{id} });
+        const supermercado: SupermercadoEntity =  await this.supermercadoRepository.findOne({where:{id}, relations:["ciudades"] });
         if(!supermercado)
             throw new BusinessLogicException(this.mensajeError, BusinessError.NOT_FOUND);
 
@@ -46,7 +46,7 @@ export class SupermercadoService {
     }
 
     async findAll(): Promise<SupermercadoEntity[]> {
-        return await this.supermercadoRepository.find();
+        return await this.supermercadoRepository.find({relations:["ciudades"] });
     }
 
     private validarTamanoNombre(nombre: string): void {
