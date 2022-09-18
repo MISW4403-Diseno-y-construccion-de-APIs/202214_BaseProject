@@ -30,8 +30,7 @@ export class AirlineService {
     async create(airline: AirlineEntity): Promise<AirlineEntity> {
 
         const currentDate =  new Date(Date.now());
-
-        if(airline.foundationDate > currentDate)
+        if(new Date(airline.foundationDate) > currentDate)
             throw new BusinessLogicException(
                 "Foundation date invalid. The foundation date should be before the current date",
                 BusinessError.PRECONDITION_FAILED,

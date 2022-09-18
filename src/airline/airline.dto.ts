@@ -1,3 +1,4 @@
+import { Transform } from 'class-transformer';
 import {IsDate, IsNotEmpty, IsString, IsUrl} from 'class-validator';
 export class AirlineDto {
 
@@ -11,6 +12,7 @@ export class AirlineDto {
 
  @IsDate()
  @IsNotEmpty()
+ @Transform( ({ value }) => new Date(value))
  readonly foundationDate: Date;
 
  @IsUrl()
