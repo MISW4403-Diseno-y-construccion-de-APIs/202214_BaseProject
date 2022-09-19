@@ -1,6 +1,6 @@
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProductoEntity } from "src/producto/producto.entity";
-import { TiendaEntity } from "src/tienda/tienda.entity";
+import { ProductoEntity } from '../../producto/producto.entity';
+import { TiendaEntity } from '../../tienda/tienda.entity';
 
 
 

@@ -16,7 +16,7 @@ export class TiendaService {
         return await this.tiendaRepository.find({relations:["productos"]});
     }
 
-    async finOne(id:string): Promise<TiendaEntity> {
+    async findOne(id:string): Promise<TiendaEntity> {
         const tienda: TiendaEntity = await this.tiendaRepository.findOne({where: {id}, relations:["productos"]});
         if(!tienda)
             throw new BusinessLogicException("La tienda con ese ID no existe", BusinessError.NOT_FOUND);
