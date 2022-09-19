@@ -30,7 +30,7 @@ describe('TiendaService', () => {
     repository.clear();
     for(let i = 0; i < 5; i++){
         const tienda: TiendaEntity = await repository.save({
-        name: faker.company.companyName(),
+        name: faker.company.name(),
         city: faker.address.city(),
         address: faker.address.secondaryAddress()})
         tiendasList.push(tienda);
@@ -70,7 +70,7 @@ describe('TiendaService', () => {
   it('create debera retornar una nueva tienda', async () => {
     const tienda: TiendaEntity = {
       id: "",
-      name: faker.company.companyName(),
+      name: faker.company.name(),
       address: faker.address.secondaryAddress(),
       city: faker.address.city(),
       productos: []
